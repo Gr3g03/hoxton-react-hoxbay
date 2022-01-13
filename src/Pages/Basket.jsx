@@ -1,5 +1,9 @@
+import { useState } from "react"
+
 export default function Basket() {
+    const [basket, setBasket] = useState()
     return (
+
         <main>
             <section className="basket-container">
                 <h2>Your Basket</h2>
