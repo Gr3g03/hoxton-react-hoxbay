@@ -206,7 +206,7 @@ img {
   place-items: center;
   text-transform: capitalize;
   text-align: center;
-  /* color: var(--white); */
+  color: var(--white);
   font-size: 2.5rem;
 }
 

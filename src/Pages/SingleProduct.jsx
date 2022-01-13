@@ -1,43 +1,43 @@
 import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+
 
 export default function SingleProduct() {
 
     const params = useParams()
+
+    const [products, setProduct] = useState(null)
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/products/${params.id}`)
+            .then(resp => resp.json())
+            .then(productsFromServer => setProduct(productsFromServer))
+    }, [])
+
     return (
 
         <main>
+            {
+                products.map(product =>
+                    <section className="product-detail main-wrapper">
+                        <img
+                            src={product.image}
+                            alt={product.title}
+                        />
+                        <div className="product-detail__side" style="border-color: var(--yellow);">
 
-            <section className="products-container main-wrapper">
-                <ul className="products-container__list">
-                    {/* <!-- Single item --> */}
-                    <li>
-                        <a href="/products/1"
-                        ><article className="product-item">
-                                <img
-                                    src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                                    alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
-                                />
-                                <h3>Fjallraven - Foldsack...</h3>
-                            </article></a
-                        >
-                    </li>
+                            <h3></h3>
+                            <h2>{product.title}</h2>
+                            <p>
+                                {product.description}
+                            </p>
+                            <p>{product.price}</p>
+                            {/* <!-- Once you click in this button, the user should be redirected to the Basket page --> */}
+                            <button>Add to basket</button>
+                        </div>
 
-                    {/* <!-- Single item --> */}
-                    <li>
-                        <a href="/products/2"
-                        ><article className="product-item">
-                                <img
-                                    src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
-                                    alt="Mens Casual Premium Slim Fit T-Shirts "
-                                />
-                                <h3>Mens Casual Premium S...</h3>
-                            </article></a
-                        >
-                    </li>
-
-                    {/* <!-- More items here --> */}
-                </ul>
-            </section>
+                    </section>
+                )}
         </main>
 
     )

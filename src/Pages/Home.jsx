@@ -1,38 +1,35 @@
+import { useEffect, useState } from "react"
+
 export default function Home() {
+
+    const [products, setProduct] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/products`)
+            .then(resp => resp.json())
+            .then(productsFromServer => setProduct(productsFromServer))
+    }, [])
+
     return (
         <main>
             <section className="products-container main-wrapper">
                 <ul className="products-container__list">
-                    {/* <!-- Single item --> */}
-                    <li>
-                        <a href="/products/1"
-                        ><article className="product-item">
-                                <img
-                                    src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                                    alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
-                                />
-                                <h3>Fjallraven - Foldsack...</h3>
-                            </article></a
-                        >
-                    </li>
+                    {products.map(products =>
+                        <li key={products.id}>
+                            <a href={products.id}>
+                                <article className="product-item">
+                                    <img src={products.image}
+                                        alt={products.title} />
+                                    <h3>{products.title}</h3>
+                                </article>
+                            </a>
+                        </li>
+                    )}
 
-                    {/* <!-- Single item --> */}
-                    <li>
-                        <a href="/products/2"
-                        ><article className="product-item">
-                                <img
-                                    src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
-                                    alt="Mens Casual Premium Slim Fit T-Shirts "
-                                />
-                                <h3>Mens Casual Premium S...</h3>
-                            </article></a
-                        >
-                    </li>
-
-                    {/* <!-- More items here --> */}
                 </ul>
             </section>
         </main>
 
     )
+
 }

@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Categories from './pages/Categories'
 import Basket from './pages/Basket'
 import './styles/index.css'
-import SingleProduct from './Pages/SingleProduct'
+import SingleProduct from './pages/SingleProduct'
 
 
 function App() {
@@ -14,12 +14,13 @@ function App() {
     <div className="App">
 
       <Header />
-
-
       <Routes>
         <Route path='/home' element={<Home />} />
+
         <Route path='/home/:id' element={<SingleProduct />} />
+
         <Route path='/categories' element={<Categories />} />
+
         <Route path='/basket' element={<Basket />} />
 
       </Routes>
