@@ -5,6 +5,7 @@ export default function Basket() {
                 <h2>Your Basket</h2>
                 <ul>
                     {/* <!-- Basket Item --> */}
+
                     <li>
                         <article className="basket-container__item">
                             <img
@@ -19,8 +20,8 @@ export default function Basket() {
                                 ><option value="0">0</option
                                 ><option value="1">1</option
                                 ><option value="2">2</option
-                                ><option value="3">3</option></select
-                                >
+                                ><option value="3">3</option>
+                                </select >
                             </p>
                             {/* <!-- The item total is calculated using the Qty selected value --> */}
                             <p>Item total: £109.95</p>
