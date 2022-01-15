@@ -11,8 +11,9 @@ import './styles/index.css'
 
 function App() {
 
+  const [basketItem, setBasketItem] = useState([])
 
-
+  console.log(basketItem)
   return (
     <div className="App">
 
@@ -21,10 +22,10 @@ function App() {
       <Routes>
 
         <Route path='/home' element={<Home />} />
-        <Route path='/home/:id' element={<SingleProduct />} />
+        <Route path='/home/:id' element={<SingleProduct setBasketItem={setBasketItem} basketItem={basketItem} />} />
         <Route path='/categories' element={<Categories />} />
         <Route path='/categories/:id' element={<CategorieProduct />} />
-        <Route path='/basket' element={<Basket />} />
+        <Route path='/basket' element={<Basket basketItem={basketItem} />} />
 
       </Routes>
 

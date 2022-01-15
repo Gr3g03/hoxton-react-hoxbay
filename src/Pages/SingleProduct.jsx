@@ -1,12 +1,13 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 
-export default function SingleProduct() {
+export default function SingleProduct(props) {
 
     const params = useParams()
 
-    const [product, setProduct] = useState([])
+    const [products, setProduct] = useState([])
+
 
     useEffect(() => {
         fetch(`http://localhost:3001/products/${params.id}`)
@@ -15,39 +16,28 @@ export default function SingleProduct() {
     }, [])
 
 
-    function addToBag(item) {
-        const updatedBag = JSON.parse(JSON.stringify(product));
-
-        const match = updatedBag.find(bagItem => bagItem.id === item.id)
-
-        if (match) {
-            match.basket.amount++
-        }
-        else {
-            const itemCopy = { ...item, amount: 1 }
-            updatedBag.push(itemCopy)
-        }
-        setProduct(updatedBag)
-    }
-
     return (
 
         <main>
             <section className="product-detail main-wrapper">
                 <img
-                    src={product.image}
-                    alt={product.title}
+                    src={products.image}
+                    alt={products.title}
                 />
                 <div className="product-detail__side"  >
                     {/* (style="border-color: var(--yellow);") */}
                     <h3></h3>
-                    <h2>{product.title}</h2>
+                    <h2>{products.title}</h2>
                     <p>
-                        {product.description}
+                        {products.description}
                     </p>
-                    <p>${product.price}</p>
+                    <p>${products.price}</p>
                     {/* <!-- Once you click in this button, the user should be redirected to the Basket page --> */}
-                    <button onClick={addToBag}>Add to basket</button>
+                    <Link to={"/basket"}>
+                        <button onClick={function () {
+                            let updatedBasket = [...props.basketItem, products]
+                            props.setBasketItem(updatedBasket)
+                        }}>Add to basket</button></Link>
                 </div>
 
             </section>
