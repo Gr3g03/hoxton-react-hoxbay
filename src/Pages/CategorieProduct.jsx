@@ -8,30 +8,33 @@ export default function CategorieProduct() {
     const params = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:3001/products/${params.id}`)
+        fetch(`http://localhost:3001/products/`)
             .then(resp => resp.json())
             .then(productsFromServer => setProduct(productsFromServer))
     }, [])
 
-    // let CategoryProduct = products.filter(product => product.categoryId === Number(params.id))
-
+    function productToDisplay() {
+        let productsToDisplay = JSON.parse(JSON.stringify(products));
+        productsToDisplay = productsToDisplay.filter(
+            (product) => product.categoryId === Number(params.id)
+        );
+        return productsToDisplay;
+    }
 
     return (
         <main>
             <section className="products-container main-wrapper">
                 <ul className="products-container__list">
-                    {/* {products.map(products => */}
-                    <li key={products.id}>
-                        <Link to={`/home/${products.id}`}>
-                            <article className="product-item">
-                                <img src={products.image}
-                                    alt={products.title} />
-                                <h3>{products.title}</h3>
-                            </article>
+                    {productToDisplay().map((product) => (
+                        <Link to={`/home/${product.id}`}>
+                            <li>
+                                <article className="product-item">
+                                    <img src={product.image} alt={product.title} />
+                                    <h3>{product.title}</h3>
+                                </article>
+                            </li>
                         </Link>
-                    </li>
-                    {/* )} */}
-
+                    ))}
                 </ul>
             </section>
         </main>

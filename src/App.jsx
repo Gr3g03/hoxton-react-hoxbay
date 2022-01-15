@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Route, Routes, useParams } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Categories from './pages/Categories'
@@ -10,6 +10,8 @@ import './styles/index.css'
 
 
 function App() {
+
+
 
   return (
     <div className="App">

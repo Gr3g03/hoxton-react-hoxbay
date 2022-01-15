@@ -14,16 +14,17 @@ export default function SingleProduct() {
             .then(productFromServer => setProduct(productFromServer))
     }, [])
 
+
     function addToBag(item) {
-        const updatedBag = JSON.parse(JSON.stringify(product))
+        const updatedBag = JSON.parse(JSON.stringify(product));
 
         const match = updatedBag.find(bagItem => bagItem.id === item.id)
 
         if (match) {
-            match.QTY++
+            match.basket.amount++
         }
         else {
-            const itemCopy = { ...item, QTY: 1 }
+            const itemCopy = { ...item, amount: 1 }
             updatedBag.push(itemCopy)
         }
         setProduct(updatedBag)

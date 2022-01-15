@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Basket() {
+
+
     const [basket, setBasket] = useState()
     return (
 
