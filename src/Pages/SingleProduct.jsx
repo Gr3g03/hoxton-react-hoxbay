@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 export default function SingleProduct(props) {
 
+
     const params = useParams()
 
     const [products, setProduct] = useState([])

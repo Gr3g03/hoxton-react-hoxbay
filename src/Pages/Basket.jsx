@@ -1,7 +1,21 @@
 import { useEffect, useState } from "react"
 
+
+
 export default function Basket(props) {
 
+
+    function total() {
+        let amount = props.basketItem.map(item => item.price)
+        amount.filter(item => item.title)
+
+        let newamount = amount.map(item => item.price)
+
+        for (const total of newamount) {
+            newamount = newamount + total
+        }
+        return newamount
+    }
 
     return (
 
@@ -21,7 +35,7 @@ export default function Basket(props) {
                                 <p>{item.title}</p>
                                 <p>
                                     Qty:
-                                    <select
+                                    <select className="amount-in-cart"
                                     ><option value="0">0</option
                                     ><option value="1">1</option
                                     ><option value="2">2</option
@@ -35,7 +49,7 @@ export default function Basket(props) {
                     )}
                 </ul>
                 {/* <!-- Basket total is calculated using each item's total from above --> */}
-                <h3>Your total: £109.95</h3>
+                <h3>Your total: £{total}</h3>
             </section>
         </main>
 
