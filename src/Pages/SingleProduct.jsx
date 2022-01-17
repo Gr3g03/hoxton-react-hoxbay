@@ -17,6 +17,24 @@ export default function SingleProduct(props) {
     }, [])
 
 
+    function pushItemsToBasket() {
+        fetch('http://localhost:3001/basket', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ...products, quantity: 1 })
+        })
+            .then(resp => {
+                if (resp.ok) {
+                    resp => resp.json()
+                } else {
+                    JSON.stringify({ ...products, quantity: + 1 })
+
+                }
+            })
+    }
+
     return (
 
         <main>
@@ -35,9 +53,8 @@ export default function SingleProduct(props) {
                     <p>${products.price}</p>
                     {/* <!-- Once you click in this button, the user should be redirected to the Basket page --> */}
                     <Link to={"/basket"}>
-                        <button onClick={function () {
-                            let updatedBasket = [...props.basketItem, products]
-                            props.setBasketItem(updatedBasket)
+                        <button onClick={() => {
+                            pushItemsToBasket()
                         }}>Add to basket</button></Link>
                 </div>
 
