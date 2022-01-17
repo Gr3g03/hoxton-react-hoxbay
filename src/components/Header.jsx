@@ -7,7 +7,7 @@ function Header() {
   return (
     <header
       className="header"
-      style={{ ["--border-colour"]: `var(--${randColour()})` }}
+      style={{ "--border-colour": `var(--${randColour()})` }}
     >
       <div className="header__logo" style={{ color: `var(--${randColour()})` }}>
         Hoxbay

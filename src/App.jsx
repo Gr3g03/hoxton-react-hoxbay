@@ -12,11 +12,6 @@ import NotFound from './pages/NotFound'
 
 function App() {
 
-  const [basketItem, setBasketItem] = useState([])
-
-
-
-
 
   return (
     <div className="App">
@@ -26,10 +21,10 @@ function App() {
       <Routes>
         <Route index element={<Navigate replace to="/home" />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/home/:id' element={<SingleProduct setBasketItem={setBasketItem} basketItem={basketItem} />} />
+        <Route path='/home/:id' element={<SingleProduct />} />
         <Route path='/categories' element={<Categories />} />
         <Route path='/categories/:id' element={<CategorieProduct />} />
-        <Route path='/basket' element={<Basket basketItem={basketItem} />} />
+        <Route path='/basket' element={<Basket />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
